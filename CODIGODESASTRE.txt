@@ -1,0 +1,36 @@
+###########################################Cambiar ñ por N########################################################
+
+sed -i 'Ññ/Nn' ./Emprego_Turismo_ACORUNA.csv
+###non funciona pola codificación do fichero
+
+file -bi $FILE
+###Para saber o formato/extension do fichero
+
+iconv -f ISO-8859-1 -t UTF-8 Myfile.txt -o resultado.txt
+#      ^ \________/  ^ \___/ \________/  ^ \___________/
+#      |     |       |   |       |       |     |
+#    from    |       to  |       |       |   Fichero salida
+#            |           |       |       |   
+#    formato de entrada  |    fichero    |
+#                        |               |   
+#                 formato de salida     output
+
+
+iconv -f utf8 -t ascii//TRANSLIT
+
+###//TRANSLIT
+#When the string "//TRANSLIT" is appended to --to-code, transliteration is activated. This means that when a #character cannot be represented in the target character set, it can be approximated through one or several similarly #looking characters.
+
+####ESTE SI FURRULA, con cambiar o tipo de formato R xa pode ler as Ñ####
+
+iconv -f ISO-8859-1 -t UTF-8 Emprego_Turismo_ACORUNA.csv -o Emprego_Turismo_ACORUNA_iconv.csv
+
+iconv -f ISO-8859-1 -t UTF-8 Afiliados_medios.csv -o Afiliados_medios_mod.csv
+
+#######################################Github and Rstudio non colaboran ###################################
+
+###Check branches
+
+git branch -a
+
+###
