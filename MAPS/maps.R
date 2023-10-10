@@ -1,5 +1,4 @@
 #####CREATE GALICIAN MAPS#######
-############https://tmieno2.github.io/R-as-GIS-for-Economists/demo.html#########
 
 if (!require("pacman")) install.packages("pacman")
 pacman::p_load(
@@ -9,4 +8,3 @@ pacman::p_load(
   ggplot2, # for map creation
   tmap # for map creation
 )
-

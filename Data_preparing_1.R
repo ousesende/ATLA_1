@@ -67,3 +67,51 @@ try_IGE_tourism$Codigo<-as.character(try_IGE_tourism$Codigo)
 try_IGE_tourism$Codigo<-fillTheBlanks(try_IGE_tourism$Codigo)
 
 write.table(try_IGE_tourism,"try_IGE_tourism.csv",sep=";",row.names = TRUE)
+
+
+###FILTER OUT MIXED ROWS
+
+#METHOD 1: dlpyr
+
+library(dplyr)
+filter(try_IGE_tourism, try_IGE_tourism$Ano %in% c("2003","2004","2005","2006","2007","2008","2009","2010","2011","2012","2013","2014","2015","2016","2017","2018","2019","2020","2021","2022"))
+
+#METHOD 2: Remove rows with empty cells with a loop (NON FURRULA)
+
+# declaring an empty vector to store
+# the rows with all the blank values
+vec <- c()
+
+# looping the rows
+for (i in 1:nrow(try_IGE_tourism)){
+  
+  # counter for blank values in
+  # each row
+  count = 0
+  
+  # looping through columns
+  for(j in 1:ncol(try_IGE_tourism)){
+    
+    # checking if the value is blank
+    if(isTRUE(try_IGE_tourism[i,j] == "")){
+      count = count + 1
+    }
+    
+  }
+  
+  # if count is equivalent to number
+  # of columns
+  if(count == ncol(try_IGE_tourism)){
+    
+    # append row number
+    vec <- append(vec,i)
+  }
+}
+
+summary(try_IGE_tourism)
+
+# deleting rows using index in vector (TAMPOUCO FURRULA)
+Mod_try_IGE_tourism <- try_IGE_tourism[ -vec, ]
+print ("Modified dataframe")
+print (data_frame_mod)
+
